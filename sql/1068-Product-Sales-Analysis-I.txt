@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+SELECT product_name, year, price
+FROM Sales
+-- LEFT JOIN Product (Runtime 2271 ms)
+INNER JOIN Product #(Runtime 1772 ms)
+ON Sales.product_id = Product.product_id
+
+# Left join causes looping while inner join uses hash maps , helping in significant runtime reductions
