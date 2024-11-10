@@ -1,0 +1,16 @@
+# Write your MySQL query statement below
+select person_name
+from 
+(
+    Select person_id,
+    person_name, 
+    weight,
+    turn,
+    sum(weight) over (order by turn) as bus_capacity_filled
+    from Queue
+) as new_table
+where bus_capacity_filled <= 1000
+order by turn desc
+limit 1
+
+-- In the context of sum(weight) over (order by turn) as bus_capacity_filled, it calculates a running total (cumulative sum) of the weight column ordered by the turn column.
