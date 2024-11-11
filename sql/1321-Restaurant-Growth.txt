@@ -1,0 +1,35 @@
+# Write your MySQL query statement below
+SELECT distinct
+    c.visited_on,
+    (
+        SELECT SUM(c2.amount)
+        FROM Customer AS c2
+        WHERE c2.visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on
+    ) AS amount,
+    ROUND(
+        (
+            SELECT SUM(c2.amount) / 7
+            FROM Customer AS c2
+            WHERE c2.visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on
+        ), 2
+    ) AS average_amount
+FROM Customer AS c
+WHERE c.visited_on >= (
+    SELECT DATE_ADD(MIN(c2.visited_on), INTERVAL 6 DAY)
+    FROM Customer AS c2
+)
+ORDER BY c.visited_on;
+
+
+
+-- select distinct visited_on,
+-- sum(amount) over w as amount,
+-- round((sum(amount) over w)/7, 2) as average_amount
+-- from Customer
+-- window w as (
+--     order by visited_on
+--     range between interval 6 day preceding and current row
+-- )
+-- limit 6, 18446744073709551615; 
+
+-- details of this solution: https://leetcode.com/problems/restaurant-growth/solutions/5559494/mysql-using-window-function-frame-beats-99
