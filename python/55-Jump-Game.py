@@ -7,7 +7,8 @@ class Solution:
         
         return True if goal == 0 else False
 
-# https://www.youtube.com/watch?v=Yan0cv2cLy8 
+ 
 # Greedy approach
-
-# Time Complexity 0(n)
+# tutorial link: https://www.youtube.com/watch?v=Yan0cv2cLy8
+# time complexity: O(n)
+# space complexity: O(1)
