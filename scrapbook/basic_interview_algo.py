@@ -134,7 +134,43 @@ def construct_binary_tree(values):
         i += 1
 
     return root
+   
+    
+def find_prime(n):
+    if n <= 1:
+        return False
+    
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    
+    return True
 
+# print(find_prime(18))
+
+
+def factorial(n):
+    if n < 0:
+        return "Invaid"
+    
+    return 1 if n == 0 else n * factorial(n-1)
+
+# print(factorial(6))
+
+
+def find_fibonacci(n):
+    if n <= 0:
+        return []
+    if n == 1:
+        return [0]
+    if n == 2:
+        return [0, 1]
+    fib = find_fibonacci(n-1)
+    fib.append(fib[-1] + fib[-2])
+
+    return fib
+
+# print(find_fibonacci(4))
 
 
 # print(bubble_sort([4, 1, 5, 3, 7]))
