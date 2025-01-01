@@ -1,14 +1,22 @@
 class Solution:
     def maxScore(self, s: str) -> int:
-        elem_s = list(s)
-        possible_ways = []
+        max_score = float('-inf')
+        zero_count = 0
+        one_count = s.count('1')
 
-        for i in range(1, len(elem_s)):
-            left, right = elem_s[:i], elem_s[i:]
-            count_of_zeros = left.count('0')
-            count_of_ones = right.count('1')
+        # Stop before the last character to ensure non-empty substrings
+        for i in range(len(s) - 1):
+            if s[i] == '0':
+                zero_count += 1
+            
+            elif s[i] == '1':
+                one_count -= 1
 
-            possible_ways.append(count_of_zeros + count_of_ones)
-        
-        return max(possible_ways)
-        
+            max_score = max(max_score, zero_count + one_count)
+
+        return max_score
+
+            
+# time complexity: O(n)
+# space complexity: O(1)
+# check note
