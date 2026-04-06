@@ -51,6 +51,36 @@ def quick_sort(list1):
 
     return quick_sort(left) + mid + quick_sort(right)
 
+def merge_sort(list1):
+    if len(list1) <= 1:
+        return list1
+
+    mid = len(list1) // 2
+    left = merge_sort(list1[:mid])
+    right = merge_sort(list1[mid:])
+
+    return merge(left, right)
+
+
+def merge(left, right):
+    sorted_list = []
+    i = j = 0
+
+    # Merge two sorted lists
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            sorted_list.append(left[i])
+            i += 1
+        else:
+            sorted_list.append(right[j])
+            j += 1
+
+    # Append remaining elements
+    sorted_list.extend(left[i:])
+    sorted_list.extend(right[j:])
+
+    return sorted_list
+
 
 def binary_search(list1, target):
     list1.sort()
